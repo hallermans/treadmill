@@ -14,7 +14,8 @@
 
 #ifndef HEARTBEAT_H
 #define HEARTBEAT_H
-    
-void heartbeat_detect();
+
+double heartrate;
+void heartbeat_sample();
     
 #endif
