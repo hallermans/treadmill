@@ -29,6 +29,12 @@ int main(void)
     LCD_Position(1, 0);
     LCD_PrintString("  My Treadmill  ");
     
+    /*Speaker_playNote(0, 1);
+    Speaker_playNote(7, 1);
+    Speaker_playNote(12, 1);
+    Speaker_playNote(16, .25);
+    Speaker_playNote(15, 1.75);*/
+    
     ADC_Start();
     ADC_StartConvert();
     DAC_Start();
@@ -38,13 +44,9 @@ int main(void)
     USBUART_CDC_Init();
     USBUART_PutString("hello\n");
     
-    heartbeat_detect();
+    HeartbeatTimer_Start();
     
-    /*Speaker_playNote(0, 1);
-    Speaker_playNote(7, 1);
-    Speaker_playNote(12, 1);
-    Speaker_playNote(16, .25);
-    Speaker_playNote(15, 1.75);*/
+    heartbeat_detect();
 
     for(;;)
     {
