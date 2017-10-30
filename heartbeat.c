@@ -19,12 +19,12 @@
 
 static void handleHeartbeat();
 
-static bool peak = 0;
+static double peak = 0;
 static bool heartbeatState = false;
 
 static const double PEAK_SINK = .0001;
 static const double HIGH_THRESHOLD = .9;
-static const double LOW_THRESHOLD = .85;
+static const double LOW_THRESHOLD = .7;
 void heartbeat_sample() {    
     ADC_IsEndConversion(ADC_WAIT_FOR_RESULT);
     uint8 sample = ADC_GetResult8();
@@ -46,7 +46,7 @@ void heartbeat_sample() {
     DAC_SetValue(sample/2); //DAC goes to 4.096V, ADC goes to 2.048V
 }
 
-static const int TIMER_CLOCK_FREQUENCY = 24000000;
+static const double TIMER_CLOCK_FREQUENCY = 24000000;
 #define NUMBER_OF_HEARTBEATS 5
 static uint32 heartbeatTimes[NUMBER_OF_HEARTBEATS];
 static void handleHeartbeat() {
@@ -56,9 +56,13 @@ static void handleHeartbeat() {
     }
     heartbeatTimes[NUMBER_OF_HEARTBEATS-1] = HeartbeatTimer_ReadCounter();
     
-    long totalTime = (heartbeatTimes[0] - heartbeatTimes[NUMBER_OF_HEARTBEATS-1]) / TIMER_CLOCK_FREQUENCY;
-    if (totalTime<0) totalTime += 4294967296;
-    heartrate = 5 / totalTime;
+    double totalTime = (heartbeatTimes[0] - heartbeatTimes[NUMBER_OF_HEARTBEATS-1]) / TIMER_CLOCK_FREQUENCY;
+    if (totalTime<0) totalTime += 4294967296 / TIMER_CLOCK_FREQUENCY;
+    heartrate = 60 * (NUMBER_OF_HEARTBEATS-1) / totalTime;
+    
+    char s[20];
+    sprintf(s, "%d\r\n", (int)heartrate);
+    USBUART_PutString(s);
 }
 
 /* [] END OF FILE */
