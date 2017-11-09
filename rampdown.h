@@ -10,10 +10,11 @@
  * ========================================
 */
 
-#ifndef SPEAKER_H
-#define SPEAKER_H
+#ifndef RAMPDOWN_H
+#define RAMPDOWN_H
 
-void Speaker_playNote(int note, double duration);
+void runRampdown();
 
 #endif
+
 /* [] END OF FILE */

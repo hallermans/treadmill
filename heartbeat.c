@@ -16,11 +16,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "heartbeat.h"
+#include "globals.h"
 
 static void handleHeartbeat();
 
 static double peak = 0;
 static bool heartbeatState = false;
+
+double heartrate;
 
 static const double PEAK_SINK = .0001;
 static const double HIGH_THRESHOLD = .9;

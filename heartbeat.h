@@ -13,7 +13,6 @@
 #ifndef HEARTBEAT_H
 #define HEARTBEAT_H
 
-double heartrate;
 void heartbeat_sample();
     
 #endif

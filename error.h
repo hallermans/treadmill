@@ -10,10 +10,11 @@
  * ========================================
 */
 
-#ifndef SPEAKER_H
-#define SPEAKER_H
-
-void Speaker_playNote(int note, double duration);
+#ifndef ERROR_H
+#define ERROR_H
+    
+void runError();
 
 #endif
+
 /* [] END OF FILE */

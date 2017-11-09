@@ -10,10 +10,11 @@
  * ========================================
 */
 
-#ifndef SPEAKER_H
-#define SPEAKER_H
-
-void Speaker_playNote(int note, double duration);
-
+#ifndef HEARTRATE_SELECTION_H
+#define HEARTRATE_SELECTION_H
+    
+void runHeartrateSelection();
+    
 #endif
+
 /* [] END OF FILE */
