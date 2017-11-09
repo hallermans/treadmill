@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "Speaker.h"
 #include "heartbeat.h"
+#include "watchdog.h"
 
 static void initializeComponents();
 static void splashscreen();
@@ -65,6 +66,8 @@ static void initializeComponents() {
     USBUART_Start(0, USBUART_5V_OPERATION);
     while (USBUART_GetConfiguration()==0);
     USBUART_CDC_Init();
+    
+    watchdog_start();
 }
 
 static void splashscreen() {
@@ -78,11 +81,11 @@ static void splashscreen() {
     LCD_Position(1, 0);
     LCD_PrintString("  My Treadmill  ");
     
-    /*Speaker_playNote(0, 1);
+    Speaker_playNote(0, 1);
     Speaker_playNote(7, 1);
     Speaker_playNote(12, 1);
     Speaker_playNote(16, .25);
-    Speaker_playNote(15, 1.75);*/
+    Speaker_playNote(15, 1.75);
 }
 
 /* [] END OF FILE */
