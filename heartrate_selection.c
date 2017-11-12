@@ -17,15 +17,9 @@
 #include "Speaker.h"
 #include "heartrate_selection.h"
 
-static void splashscreen();
-
 double heartrate_setpoint = 60;
 
 void runHeartrateSelection() {
-    splashscreen();
-}
-
-static void splashscreen() {
     static bool firstEntry = true;
     
     if (firstEntry) {
